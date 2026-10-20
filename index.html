@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicias del Horno - Galletas Artesanales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberCustom: '#854d0e',
+                        warmCream: '#fefae0',
+                        cookieBrown: '#654321',
+                        goldAccent: '#d4a373'
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfbf7;
+            color: #3b2f2f;
+        }
+        h1, h2, h3, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .pulse-soft {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-[#fdfbf7] min-h-screen flex flex-col justify-between selection:bg-[#d4a373] selection:text-white">
+
+    <!-- Notification Toast (Custom Alert replacement) -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-transform duration-300 bg-amber-800 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i class="fa-solid fa-circle-exclamation text-yellow-300 text-xl"></i>
+        <span id="toast-message" class="font-medium text-sm">Mensaje de notificación</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-cookie-bite text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold font-heading text-amber-900 tracking-tight">Galletas Delicia</h1>
+                    <p class="text-xs text-amber-700 font-medium">Artesanales & Recién Horneadas</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/59170217997" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-full text-sm shadow-md transition-all transform hover:scale-105">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>70217997</span>
+                </a>
+                <a href="#pedido" class="bg-amber-800 hover:bg-amber-900 text-white font-semibold px-4 py-2 rounded-full text-sm shadow-md transition-all transform hover:scale-105">
+                    <i class="fa-solid fa-cart-shopping mr-1.5"></i> Pedir Ahora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-amber-100/60 to-[#fdfbf7] py-16 sm:py-24 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left space-y-6">
+                <span class="inline-block bg-amber-200 text-amber-900 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    100% Caseras y Artesanales
+                </span>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-amber-950 leading-tight">
+                    El dulce sabor del <span class="text-amber-800 italic">horno artesanal</span>
+                </h2>
+                <p class="text-base sm:text-lg text-gray-700 max-w-lg mx-auto md:mx-0">
+                    Horneadas diariamente con ingredientes de la más alta calidad, mantequilla pura y mucho amor. ¡Prueba la textura crujiente por fuera y suave por dentro!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 pt-2">
+                    <a href="#productos" class="bg-amber-800 hover:bg-amber-900 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2">
+                        <span>Ver Menú</span>
+                        <i class="fa-solid fa-arrow-down text-sm"></i>
+                    </a>
+                    <a href="https://wa.me/59170217997?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20de%20galletas%20artesanales." target="_blank" class="border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i>
+                        <span>Contactar WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="relative w-72 sm:w-96 h-72 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop" alt="Galletas artesanales variadas" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x600/854d0e/ffffff?text=Galletas+Artesanales'">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-amber-100 flex items-center gap-3 animate-bounce">
+                    <div class="bg-amber-100 text-amber-800 p-3 rounded-xl text-xl">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-semibold">Calidad Garantizada</p>
+                        <p class="text-sm font-bold text-amber-950">¡Recién horneadas hoy!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold font-heading text-amber-950 mb-3">Nuestras Especialidades</h2>
+            <p class="text-gray-600">Elige tus favoritas o combina ambas para disfrutar del mejor antojo dulce.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Producto 1: Clásicas -->
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-amber-100 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300">
+                <div>
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=600&auto=format&fit=crop" alt="Galletas Clásicas" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/d4a373/ffffff?text=Galletas+Clasicas'">
+                        <div class="absolute top-4 right-4 bg-amber-900 text-white font-bold px-4 py-1.5 rounded-full shadow-lg text-lg">
+                            3 Bs <span class="text-xs font-normal">c/u</span>
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-2xl font-bold font-heading text-amber-950 mb-2">Galletas Clásicas con Chispas</h3>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            Nuestra tradicional receta de galleta con mantequilla dorada, crujientes bordes caramelizados y abundantes chispas de chocolate semi-amargo en cada bocado.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 pt-0">
+                    <div class="flex items-center justify-between bg-amber-50 rounded-2xl p-4 border border-amber-200">
+                        <span class="font-bold text-amber-900 text-sm">Cantidad deseada:</span>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeQuantity('classic', -1)" class="w-9 h-9 rounded-xl bg-white border border-amber-300 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-800 hover:text-white transition-colors shadow-sm">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+                            <span id="qty-classic" class="w-8 text-center font-bold text-lg text-amber-950">0</span>
+                            <button onclick="changeQuantity('classic', 1)" class="w-9 h-9 rounded-xl bg-white border border-amber-300 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-800 hover:text-white transition-colors shadow-sm">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2: Rellenas -->
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-amber-100 flex flex-col justify-between transform hover:-translate-y-1 transition-all duration-300">
+                <div>
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefcc?q=80&w=600&auto=format&fit=crop" alt="Galletas Rellenas" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/854d0e/ffffff?text=Galletas+Rellenas'">
+                        <div class="absolute top-4 right-4 bg-amber-900 text-white font-bold px-4 py-1.5 rounded-full shadow-lg text-lg">
+                            5 Bs <span class="text-xs font-normal">c/u</span>
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-2xl font-bold font-heading text-amber-950 mb-2">Galletas Rellenas Especiales</h3>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            Exquisitas galletas dobles artesanales con un centro generoso de dulce de leche artesanal o crema de chocolate fundido que se derrite en tu boca.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 pt-0">
+                    <div class="flex items-center justify-between bg-amber-50 rounded-2xl p-4 border border-amber-200">
+                        <span class="font-bold text-amber-900 text-sm">Cantidad deseada:</span>
+                        <div class="flex items-center gap-3">
+                            <button onclick="changeQuantity('filled', -1)" class="w-9 h-9 rounded-xl bg-white border border-amber-300 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-800 hover:text-white transition-colors shadow-sm">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+                            <span id="qty-filled" class="w-8 text-center font-bold text-lg text-amber-950">0</span>
+                            <button onclick="changeQuantity('filled', 1)" class="w-9 h-9 rounded-xl bg-white border border-amber-300 text-amber-900 font-bold flex items-center justify-center hover:bg-amber-800 hover:text-white transition-colors shadow-sm">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Summary & WhatsApp Form Section -->
+    <section id="pedido" class="py-16 bg-gradient-to-t from-amber-100/40 to-[#fdfbf7] border-t border-amber-100">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 border border-amber-200">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-900 mb-3 text-xl">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-heading text-amber-950">Resumen de tu Pedido</h2>
+                    <p class="text-gray-600 text-sm mt-1">Verifica tus cantidades y calcula el total automáticamente en Bolivianos (Bs)</p>
+                </div>
+
+                <!-- Detalle del carrito interactivo -->
+                <div class="space-y-4 mb-8">
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
+                            <span class="font-medium text-gray-800">Galletas Clásicas (3 Bs c/u)</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="summary-classic-qty" class="font-bold text-gray-900">0</span> un. = <span id="summary-classic-total" class="font-bold text-amber-900">0 Bs</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-800"></span>
+                            <span class="font-medium text-gray-800">Galletas Rellenas (5 Bs c/u)</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="summary-filled-qty" class="font-bold text-gray-900">0</span> un. = <span id="summary-filled-total" class="font-bold text-amber-900">0 Bs</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4 bg-amber-50/70 p-4 rounded-2xl border border-amber-200">
+                        <span class="text-lg font-bold text-amber-950">Total a Pagar:</span>
+                        <span id="grand-total" class="text-2xl font-bold text-amber-900">0 Bs</span>
+                    </div>
+                </div>
+
+                <!-- Form Inputs -->
+                <div class="space-y-4 mb-8">
+                    <div>
+                        <label for="customer-name" class="block text-sm font-bold text-gray-700 mb-1.5">Tu Nombre y Apellido:</label>
+                        <input type="text" id="customer-name" placeholder="Ej. María Gómez" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all text-sm">
+                    </div>
+                    <div>
+                        <label for="customer-notes" class="block text-sm font-bold text-gray-700 mb-1.5">Instrucciones o dirección de entrega (Opcional):</label>
+                        <textarea id="customer-notes" rows="2" placeholder="Ej. Entregar en la Av. Las Américas, esquina..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all text-sm resize-none"></textarea>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Button -->
+                <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold py-4 px-6 rounded-2xl shadow-xl transition-all transform hover:scale-[1.01] flex items-center justify-center gap-3 text-base sm:text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>Pedir por WhatsApp al 70217997</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-950 text-amber-100 py-12 border-t border-amber-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+            <div>
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-800 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-cookie-bite text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold font-heading text-white">Galletas Delicia</span>
+                </div>
+                <p class="text-xs text-amber-200/80">Endulzando tus momentos con el toque único de la repostería artesanal.</p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm font-semibold mb-1 text-white">Atención Directa</p>
+                <a href="https://wa.me/59170217997" target="_blank" class="text-amber-300 hover:text-white font-bold text-lg inline-flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> +591 70217997
+                </a>
+            </div>
+            <div class="text-center md:text-right text-xs text-amber-300/70">
+                <p>&copy; 2026 Galletas Artesanales Delicia.</p>
+                <p class="mt-1">Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de lógica interactiva -->
+    <script>
+        // Estado de las cantidades
+        let state = {
+            classic: 0,
+            filled: 0
+        };
+
+        const PRICES = {
+            classic: 3,
+            filled: 5
+        };
+
+        function changeQuantity(type, delta) {
+            state[type] = Math.max(0, state[type] + delta);
+            updateUI();
+        }
+
+        function updateUI() {
+            // Actualizar contadores en las tarjetas de productos
+            document.getElementById('qty-classic').innerText = state.classic;
+            document.getElementById('qty-filled').innerText = state.filled;
+
+            // Actualizar resumen del pedido
+            document.getElementById('summary-classic-qty').innerText = state.classic;
+            document.getElementById('summary-classic-total').innerText = (state.classic * PRICES.classic) + ' Bs';
+
+            document.getElementById('summary-filled-qty').innerText = state.filled;
+            document.getElementById('summary-filled-total').innerText = (state.filled * PRICES.filled) + ' Bs';
+
+            const grandTotal = (state.classic * PRICES.classic) + (state.filled * PRICES.filled);
+            document.getElementById('grand-total').innerText = grandTotal + ' Bs';
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-x-full');
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3500);
+        }
+
+        function sendWhatsAppOrder() {
+            const totalItems = state.classic + state.filled;
+            if (totalItems === 0) {
+                showToast('Por favor selecciona al menos una galleta para hacer tu pedido.');
+                return;
+            }
+
+            const nameInput = document.getElementById('customer-name').value.trim();
+            if (!nameInput) {
+                showToast('Por favor ingresa tu nombre para el pedido.');
+                document.getElementById('customer-name').focus();
+                return;
+            }
+
+            const notesInput = document.getElementById('customer-notes').value.trim();
+            const grandTotal = (state.classic * PRICES.classic) + (state.filled * PRICES.filled);
+
+            let message = `¡Hola! Me gustaría hacer el siguiente pedido de Galletas Artesanales Delicia:\n\n`;
+            if (state.classic > 0) {
+                message += `• Galletas Clásicas (3 Bs): ${state.classic} un. = ${state.classic * PRICES.classic} Bs\n`;
+            }
+            if (state.filled > 0) {
+                message += `• Galletas Rellenas (5 Bs): ${state.filled} un. = ${state.filled * PRICES.filled} Bs\n`;
+            }
+            message += `\n*Total a pagar: ${grandTotal} Bs*\n`;
+            message += `*Nombre:* ${nameInput}\n`;
+            if (notesInput) {
+                message += `*Notas:* ${notesInput}\n`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/59170217997?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
